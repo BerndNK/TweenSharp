@@ -41,6 +41,20 @@ point.Tween(x => x.X).To(20).In(0.5).Delay(1.0)
 .OnUpdate(OnUpdateHandler) // gets called whenever the value gets updates. (After the value has been set)
 .OnComplete(OnCompleteHandler) // gets called when the tween is completed
 .OnCompleteParams(5); // you may also specify method parameters the tween shall call your method with
+
+
+// Example
+handler.Add(point.Tween(x => x.X).To(10).In(1.0).Delay(0.4));
+handler.Update(200); // delay running
+handler.Update(200); // delay running
+handler.Update(200); // OnBegin called point.X == 2 OnUpdate called
+handler.Update(200); // point.X == 4 OnUpdate called
+handler.Update(200); // point.X == 6 OnUpdate called
+handler.Update(200); // point.X == 8 OnUpdate called
+handler.Update(200); // point.X == 10 OnUpdate called, OnComplete called
+handler.Update(100); // point.X == 10 (Tween has ended)
+
+
 ````
 ### Repeat
 You can specifiy repeat actions.
