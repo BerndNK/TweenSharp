@@ -1,6 +1,12 @@
 # TweenSharp ![alt text](https://github.com/BerndNK/TweenSharp/raw/master/Icon/IconInversed50px.png "TweenSharpLogo")
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/BerndNK/TweenSharp/blob/master/LICENSEE)
+[![NuGet](https://img.shields.io/nuget/v/TweenSharp.svg)](https://www.nuget.org/packages/TweenSharp/)
+
 
 Provides an easy to use fluent API to quickly generate tweening functions.
+```
+Install-Package TweenSharp
+```
 
 # Usage
 ```C#
