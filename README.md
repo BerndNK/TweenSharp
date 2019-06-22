@@ -1,6 +1,6 @@
 # TweenSharp ![alt text](https://github.com/BerndNK/TweenSharp/raw/master/Icon/IconInversed50px.png "TweenSharpLogo")
 
-Provides an easy to use fluent API, to quickly generate tweening functions.
+Provides an easy to use fluent API to quickly generate tweening functions.
 
 # Usage
 ```C#
