@@ -29,16 +29,54 @@ handler.Update(200); // point.X == 4
 handler.Update(200); // point.X == 6
 handler.Update(200); // point.X == 8
 handler.Update(200); // point.X == 10
-handler.Update(100); // point.X == 10 (Tween has ended)
+handler.Update(100); // point.X == 10 (tween has ended)
 ```
-Ideally you create own handler instance and update it everytime your scene renders.
+Ideally you create one handler instance and update it everytime your scene renders. For example for WPF the CompositionTarget.Rendering event.
 
 ### Fine tuning
 You can use easing functions, delays and concatination of multiple properties.
 ```C#
-point.Tween(x => x.X).And(x => x.Y).To(20).In(1.5).Ease(Easing.BackEaseIn).Delay(0.5);
+point.Tween(x => x.X)
+.And(x => x.Y) // tween multiple properties at once
+.To(20).In(1.5)
+.Ease(Easing.BackEaseIn) // specify custom easing functions
+.Delay(0.5); // specify a delay before the tweening starts
 ````
 See the Easing.cs class for all available easing methods.
+
+### Sequence
+Use .ToSequence() to nest multiple tweens into one
+```C#
+var tweens = new List<Timeline>(); // timeline is the base class for tweens
+tweens.Add(point.Tween(x => x.X).To(20).In(1));
+tweens.Add(point.Tween(x => x.Y).To(10).In(1));
+handler.Add(tweens.ToSequence()); // a sequence is a single instance which contains multiple tweens
+````
+
+### AlwaysOnCurrentValue
+React to interrupting value changes.
+AlwaysOnCurrentValue tells the tween to always use the current value instead of initializing it once the tweens starts.
+```C#
+// with AlwaysOnCurrentValue = false (default)
+handler.Add(point.Tween(x => x.X).To(10).In(0.5));
+handler.Update(100); // point.X == 2, initialized start value with the current value of point.X (0)
+handler.Update(100); // point.X == 4
+handler.Update(100); // point.X == 6
+point.X = 0;
+// the current value is calculated with the progress (80%) of the start value (0) and target value (10):
+handler.Update(100); // point.X == 8 // note that updating point.X did not have an effect on the tween
+handler.Update(100); // point.X == 10
+
+// with AlwaysOnCurrentValue = true
+handler.Add(point.Tween(x => x.X).To(10).In(0.5).AlwaysOnCurrentValue(false));
+handler.Update(100); // point.X == 2
+handler.Update(100); // point.X == 4
+handler.Update(100); // point.X == 6
+point.X = 0;
+// the current value is calculated with the progress (80%) of the CURRENT value (0) and target value (10):
+handler.Update(100); // point.X == 5
+handler.Update(100); // point.X == 10
+````
 
 ### Events
 ```C#
@@ -58,9 +96,7 @@ handler.Update(200); // point.X == 4 OnUpdate called
 handler.Update(200); // point.X == 6 OnUpdate called
 handler.Update(200); // point.X == 8 OnUpdate called
 handler.Update(200); // point.X == 10 OnUpdate called, OnComplete called
-handler.Update(100); // point.X == 10 (Tween has ended)
-
-
+handler.Update(100); // point.X == 10 (tween has ended)
 ````
 ### Repeat
 You can specifiy repeat actions.
@@ -76,6 +112,16 @@ point.Tween(x => x.X).To(20).In(0.5).Repeat(2).Delay(0.5).RepeatDelay(1.0);
 point.Tween(x => x.X).To(20).In(0.5).Delay(1.0).Repeat(1)
 .OnRepeat(OnRepeatHandler) // gets called after 1.5 seconds (delay + duration)
 .OnComplete(OnCompleteHandler); // gets called after 2 seconds (delay + duration + repeat duration)
+````
+
+### Time
+Through time modifiying you can achieve slow- or fast-motion effects.
+```C#
+handler.TimeModifier = 0.5; // runs tweens at half speed
+handler.TimeModifier = 2; // runs tweens at double speed
+
+// You can even tween this property
+handler.Add(handler.Tween(x => x.TimeModifier).To(0.5).In(0.5).Yoyo(true).Repeat(1));
 ````
 
 ### Custom tween operations
@@ -114,6 +160,7 @@ public static UInt32 ColorProgressFunction(UInt32 startValue, UInt32 endValue, d
 }
 
 var someObjectWithColor = new SomeObjectWithColor { Color = 0xff0000ff } // Color is UInt32
+
 // tween blue to red in 1 second
 someObjectWithColor(x => x.Color, ColorProgressFunction).To(0xffff0000).In(1.0);
 ````
