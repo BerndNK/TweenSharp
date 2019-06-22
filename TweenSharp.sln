@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TweenSharp", "TweenSharp\Tw
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TweenSharpTests", "TweenSharpTests\TweenSharpTests.csproj", "{BA0438EE-C2B1-4058-A009-2C60DB5275AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{571084D7-82D2-43D4-8BFD-5745D3122243}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{BA0438EE-C2B1-4058-A009-2C60DB5275AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA0438EE-C2B1-4058-A009-2C60DB5275AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA0438EE-C2B1-4058-A009-2C60DB5275AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{571084D7-82D2-43D4-8BFD-5745D3122243}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{571084D7-82D2-43D4-8BFD-5745D3122243}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{571084D7-82D2-43D4-8BFD-5745D3122243}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{571084D7-82D2-43D4-8BFD-5745D3122243}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
