@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>0.1.0</Version>
+    <Authors>BerndNK</Authors>
+    <Company />
+    <Description>Provides an easy to use fluent API, to quickly generate tweening functions.</Description>
+    <Copyright>Bernd N. Krupinski</Copyright>
+  </PropertyGroup>
+
+</Project>
