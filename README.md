@@ -19,7 +19,6 @@ handler.Add(tween);
 // Tell the handler that time has passed
 handler.Update(100); // progress 100 milliseconds. point.X == 1
 handler.Update(100); // point.X == 2
-handler.Update(100); // point.X == 3
 handler.Update(200); // point.X == 4
 handler.Update(200); // point.X == 6
 handler.Update(200); // point.X == 8
