@@ -14,7 +14,7 @@ Install-Package TweenSharp
 var handler = new TweenHandler();
 
 // Create a tween
-var point = new Point(0, 0); // Point is a class!
+var point = new Point(0, 0); // Point is a class (structs will not work)
 var tween = point.Tween(x => x.X) // select which property to tween
                 .To(10) // target value
                 .In(1.0); // tween time in seconds
