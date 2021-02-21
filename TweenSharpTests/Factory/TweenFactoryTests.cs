@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Text;
 using NUnit.Framework;
 using TweenSharp;
@@ -41,11 +40,11 @@ namespace TweenSharpTests.Factory
         {
             var rect = new Rectangle();
 
-            var sequence = rect.Tween(x => x.X, ArithmeticProgressFunction).And(x => x.Y).To(5);
-            var tween = rect.Tween(x => x.X, ArithmeticProgressFunction).To(5);
-            
-            sequence = rect.Tween(x => x.X, ArithmeticProgressFunction).And(x => x.Y).To(5).In(2);
-            tween = rect.Tween(x => x.Z, ArithmeticProgressFunction).To(50).In(5).In(5);
+            rect.Tween(x => x.X, ArithmeticProgressFunction).And(x => x.Y).To(5);
+            rect.Tween(x => x.X, ArithmeticProgressFunction).To(5);
+
+            var sequence = rect.Tween(x => x.X, ArithmeticProgressFunction).And(x => x.Y).To(5).In(2);
+            var tween = rect.Tween(x => x.Z, ArithmeticProgressFunction).To(50).In(5).In(5);
 
             var seq = new Sequence(sequence, tween);
             _tweenHandler.Add(seq);

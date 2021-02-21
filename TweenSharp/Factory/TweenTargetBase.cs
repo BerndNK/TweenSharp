@@ -25,7 +25,7 @@ namespace TweenSharp.Factory
         {
             void Setter(TValue x) => prop.SetValue(Target, x);
             TValue Getter() => (TValue) prop.GetValue(Target);
-            return TweenPool.Dequeue(Target, ProgressFunction, Setter, Getter, value, tweenDirection);
+            return new Tween<TTarget, TValue>(Target, ProgressFunction, Setter, Getter, value, tweenDirection);
         }
     }
 }

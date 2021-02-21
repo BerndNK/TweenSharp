@@ -6,7 +6,7 @@ namespace TweenSharp.Animation
 {
     public abstract class Timeline : ITimeline
     {
-        protected bool _inYoyoToggle;
+        protected bool InYoyoToggle;
         public double RunTime { get; set; }
 
         public bool IsDone => GetIsDone();
@@ -54,7 +54,6 @@ namespace TweenSharp.Animation
             {
                 await Task.Delay(100);
             }
-
         }
 
         public virtual void Dispose()
@@ -68,20 +67,18 @@ namespace TweenSharp.Animation
 
         public override void Update(double passedSeconds)
         {
-
         }
     }
 
     public abstract class Timeline<T> : Timeline where T : Timeline<T>
     {
-
         public T In(double seconds)
         {
             Options.Duration = seconds;
             return this as T;
         }
 
-        public T OnComplete(Timeline.TimelineEventHandler onCompleteHandler)
+        public T OnComplete(TimelineEventHandler onCompleteHandler)
         {
             Options.OnCompleteHandler += onCompleteHandler;
             return this as T;
@@ -93,13 +90,13 @@ namespace TweenSharp.Animation
             return this as T;
         }
 
-        public T OnBegin(Timeline.TimelineEventHandler onCompleteHandler)
+        public T OnBegin(TimelineEventHandler onCompleteHandler)
         {
             Options.OnBeginHandler += onCompleteHandler;
             return this as T;
         }
 
-        public T OnUpdate(Timeline.TimelineEventHandler onUpdateHandler)
+        public T OnUpdate(TimelineEventHandler onUpdateHandler)
         {
             Options.OnUpdateHandler += onUpdateHandler;
             return this as T;
@@ -110,6 +107,7 @@ namespace TweenSharp.Animation
             Options.Repeat = repeats;
             return this as T;
         }
+
         public T RepeatDelay(double repeatDelay)
         {
             Options.RepeatDelay = repeatDelay;

@@ -117,8 +117,8 @@ namespace TweenSharp.Animation
                         var tmp = StartValue;
                         StartValue = TargetValue;
                         TargetValue = tmp;
-                        _inYoyoToggle = !_inYoyoToggle;
-                        if (!_inYoyoToggle)
+                        InYoyoToggle = !InYoyoToggle;
+                        if (!InYoyoToggle)
                             RunTime = -Options.YoyoDelay;
                     }
 
@@ -143,7 +143,6 @@ namespace TweenSharp.Animation
         public override void Dispose()
         {
             _isDone = true;
-            TweenPool.Enqueue(this);
         }
     }
 

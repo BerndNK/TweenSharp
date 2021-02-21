@@ -1,4 +1,5 @@
 ﻿using System;
+// ReSharper disable CompareOfFloatsByEqualityOperator
 
 namespace TweenSharp.Animation
 {
@@ -7,7 +8,7 @@ namespace TweenSharp.Animation
 
         public delegate double EasingFunction(double progress);
 
-        public static EasingFunction Constant(double constantValue) => progress => constantValue;
+        public static EasingFunction Constant(double constantValue) => _ => constantValue;
 
         /// <summary>
         /// Modeled after the line y = x
@@ -103,9 +104,9 @@ namespace TweenSharp.Animation
         }
 
         /// <summary>
-        // Modeled after the piecewise quartic
-        // y = (1/2)((2x)^4)        ; [0, 0.5)
-        // y = -(1/2)((2x-2)^4 - 2) ; [0.5, 1]
+        /// Modeled after the piecewise quartic
+        /// y = (1/2)((2x)^4)        ; [0, 0.5)
+        /// y = -(1/2)((2x-2)^4 - 2) ; [0.5, 1]
         /// </summary>
         public static double QuarticEaseInOut(double p)
         {
@@ -225,7 +226,7 @@ namespace TweenSharp.Animation
         /// </summary>
         public static double ExpoEaseOut(double p)
         {
-            return (p == 1.0f) ? p : 1 - Math.Pow(2, -10 * p);
+            return p == 1.0f ? p : 1 - Math.Pow(2, -10 * p);
         }
 
         /// <summary>
